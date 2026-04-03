@@ -15,6 +15,10 @@ packages/*/dist-firefox/
 .env.*.local
 *.local.env
 
+# tsx / tool temp caches
+undefined/
+packages/ai/undefined/
+
 # Editor files
 .vscode/
 .zed/

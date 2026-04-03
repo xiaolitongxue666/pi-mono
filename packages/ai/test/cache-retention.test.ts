@@ -287,6 +287,7 @@ describe("Cache Retention (PI_CACHE_RETENTION)", () => {
 					apiKey: "fake-key",
 					cacheRetention: "none",
 					sessionId: "session-1",
+					signal: AbortSignal.timeout(8000),
 					onPayload: (payload) => {
 						capturedPayload = payload;
 					},
@@ -315,6 +316,7 @@ describe("Cache Retention (PI_CACHE_RETENTION)", () => {
 					apiKey: "fake-key",
 					cacheRetention: "long",
 					sessionId: "session-2",
+					signal: AbortSignal.timeout(8000),
 					onPayload: (payload) => {
 						capturedPayload = payload;
 					},
