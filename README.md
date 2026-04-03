@@ -53,9 +53,12 @@ npm run build        # Build all packages
 npm run check        # Lint, format, and type check
 ./test.sh            # Run tests (skips LLM-dependent tests without API keys)
 ./pi-test.sh         # Run pi from sources (can be run from any directory)
+./start-pi.sh        # Same as pi-test.sh + load repo .env + Volc ARK extension (see docs/dev-local-setup.md)
 ```
 
 > **Note:** `npm run check` requires `npm run build` to be run first. The web-ui package uses `tsc` which needs compiled `.d.ts` files from dependencies.
+
+On **Windows**, prefer **Git Bash** for `./build.sh`, `./test.sh`, and `./start-pi.sh`. If `npm install` / `npm run` fails with spawn errors, see [docs/dev-local-setup.md](docs/dev-local-setup.md).
 
 ## License
 

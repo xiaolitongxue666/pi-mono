@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
+# Run pi from source: repo root tsx -> packages/coding-agent/src/cli.ts
+# Loads repo root .env when present (skipped with --no-env). See docs/dev-local-setup.md for .env and Windows notes.
+#
 set -euo pipefail
+
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
@@ -13,6 +17,14 @@ for arg in "$@"; do
     ARGS+=("$arg")
   fi
 done
+
+# Repo root `.env` (gitignored): export vars before pi starts. Skip when --no-env.
+if [[ "$NO_ENV" != "true" && -f "$SCRIPT_DIR/.env" ]]; then
+	set -a
+	# shellcheck disable=SC1091
+	source "$SCRIPT_DIR/.env"
+	set +a
+fi
 
 if [[ "$NO_ENV" == "true" ]]; then
   # Unset API keys (see packages/ai/src/env-api-keys.ts)
@@ -50,11 +62,16 @@ if [[ "$NO_ENV" == "true" ]]; then
   unset AZURE_OPENAI_API_KEY
   unset AZURE_OPENAI_BASE_URL
   unset AZURE_OPENAI_RESOURCE_NAME
+  unset ARK_API_KEY
+  unset VOLC_API_KEY
+  unset VOLC_BASE_URL
+  unset VOLC_ARK_ENDPOINT
+  unset VOLC_ARK_ENDPOINT_R1
   echo "Running without API keys..."
 fi
 
 TSX_BIN="$SCRIPT_DIR/node_modules/.bin/tsx"
-if [[ ! -x "$TSX_BIN" ]]; then
+if [[ ! -e "$TSX_BIN" && ! -e "$TSX_BIN.cmd" ]]; then
   echo "tsx not found at $TSX_BIN. Run npm install from the repo root first." >&2
   exit 1
 fi

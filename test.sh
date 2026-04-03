@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 AUTH_FILE="$HOME/.pi/agent/auth.json"
 AUTH_BACKUP="$HOME/.pi/agent/auth.json.bak"
 
@@ -57,6 +59,8 @@ unset AWS_CONTAINER_CREDENTIALS_RELATIVE_URI
 unset AWS_CONTAINER_CREDENTIALS_FULL_URI
 unset AWS_WEB_IDENTITY_TOKEN_FILE
 unset BEDROCK_EXTENSIVE_MODEL_TEST
+unset ARK_API_KEY
+unset VOLC_API_KEY
 
 echo "Running tests without API keys..."
-npm test
+bash "$SCRIPT_DIR/scripts/test-workspaces.sh"

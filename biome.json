@@ -25,6 +25,7 @@
 	},
 	"files": {
 		"includes": [
+			"extensions/**/*.ts",
 			"packages/*/src/**/*.ts",
 			"packages/*/test/**/*.ts",
 			"packages/coding-agent/examples/**/*.ts",

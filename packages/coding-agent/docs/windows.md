@@ -15,3 +15,7 @@ For most users, [Git for Windows](https://git-scm.com/download/win) is sufficien
   "shellPath": "C:\\cygwin64\\bin\\bash.exe"
 }
 ```
+
+## Monorepo dev from source
+
+From the repo root in Git Bash, build and run pi with `./build.sh`, `./start-pi.sh`, and env files — see [docs/dev-local-setup.md](../../../docs/dev-local-setup.md).
