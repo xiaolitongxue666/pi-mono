@@ -6,6 +6,9 @@ set -euo pipefail
 
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck disable=SC1091
+source "$SCRIPT_DIR/scripts/fnm-macos.sh"
+ensure_fnm_on_macos
 
 # Check for --no-env flag
 NO_ENV=false
